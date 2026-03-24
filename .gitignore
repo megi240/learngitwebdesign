@@ -1,0 +1,10 @@
+test.html
+*.log
+*.tmp
+*.DS_Store
+node_modules/
+dist/
+coverage/
+.env
+.idea/
+
