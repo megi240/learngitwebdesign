@@ -47,10 +47,67 @@
 
 <main>
   <h1>pershendetje</h1>
+
+ 
+
+  <section id="review-form" class="container mt-4">
+    <h2>Shto Review</h2>
+    <form id="add-review-form">
+      <div class="mb-3">
+        <label for="reviewerName" class="form-label">Emri</label>
+        <input id="reviewerName" class="form-control" type="text" required>
+      </div>
+      <div class="mb-3">
+        <label for="rating" class="form-label">Rating (1-5)</label>
+        <input id="rating" class="form-control" type="number" min="1" max="5" required>
+      </div>
+      <div class="mb-3">
+        <label for="comment" class="form-label">Koment</label>
+        <textarea id="comment" class="form-control" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Shto review</button>
+    </form>
+  </section>
 </main>
 
 <footer>
     <p>&copy;2026 Bethany's. All rights reserved</p>
 </footer>
+
+<script>
+  async function loadPieReviews() {
+    try {
+      const res = await fetch('pies.json');
+      if (!res.ok) throw new Error('Network response was not ok ' + res.status);
+      const reviews = await res.json();
+      const listEl = document.getElementById('reviews-list');
+      listEl.innerHTML = '';
+      if (!Array.isArray(reviews) || reviews.length === 0) {
+        listEl.innerHTML = '<div class="col-12"><p>No reviews found.</p></div>';
+        return;
+      }
+      reviews.forEach(review => {
+        const card = document.createElement('div');
+        card.className = 'col-md-4 mb-3';
+        card.innerHTML = `
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">${review.reviewerName}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Rating: ${review.rating}/5</h6>
+              <p class="card-text">${review.comment}</p>
+            </div>
+            <div class="card-footer text-muted">${new Date(review.reviewDate).toLocaleDateString()}</div>
+          </div>
+        `;
+        listEl.appendChild(card);
+      });
+    } catch (err) {
+      document.getElementById('reviews-list').innerHTML = `<div class="col-12 text-danger">Unable to load reviews: ${err.message}</div>`;
+      console.error(err);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadPieReviews);
+</script>
 </body>
 </html>

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "reviewerName": "Blerina",
+    "rating": 5,
+    "comment": "Shume e shijshme, brumi i fresket dhe kremi perfundimtar.",
+    "reviewDate": "2026-03-25T12:00:00Z"
+  },
+  {
+    "id": 2,
+    "reviewerName": "Arben",
+    "rating": 4,
+    "comment": "Shije e mire, por mund te shtohej me pak kanelle.",
+    "reviewDate": "2026-03-24T09:30:00Z"
+  },
+  {
+    "id": 3,
+    "reviewerName": "Drita",
+    "rating": 3,
+    "comment": "I mrekullueshem persa i perket estetikës, pak me i embel se deshiroja.",
+    "reviewDate": "2026-03-23T15:45:00Z"
+  }
+]
